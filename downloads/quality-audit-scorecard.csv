@@ -1,0 +1,4 @@
+Case ID,Review Date,Criterion,Weight,Result,Evidence,Finding,Corrective Action,Owner,Due Date,Status
+DEMO-001,2026-09-18,Identity verification,20,Pass,Verification recorded,None,None,Quality Lead,,Closed
+DEMO-001,2026-09-18,Accurate information,25,Partial,Case notes reviewed,One detail omitted,Targeted coaching,Team Leader,2026-09-25,Open
+DEMO-002,2026-09-18,SOP adherence,25,Pass,Workflow history reviewed,None,None,Quality Lead,,Closed

@@ -1,0 +1,4 @@
+Control ID,Procedure Step,Evidence Required,Result,Risk,Exception,Action Owner,Due Date,Status
+SOP-01,Confirm case ownership,System assignment,Compliant,Low,None,Operations Lead,,Closed
+SOP-02,Record customer consent,Consent timestamp,Non-compliant,High,Timestamp missing,Case Owner,2026-09-22,Open
+SOP-03,Complete final review,Reviewer sign-off,Compliant,Low,None,Quality Reviewer,,Closed

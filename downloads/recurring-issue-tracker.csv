@@ -1,0 +1,3 @@
+Issue ID,Date,Category,Description,Frequency,Impact,Likely Root Cause,Corrective Action,Owner,Review Date,Status
+ISS-01,2026-09-18,Documentation,Required field left blank,7,Medium,Form guidance unclear,Update guidance and brief team,Process Owner,2026-09-25,In progress
+ISS-02,2026-09-18,Handover,Case assigned to wrong queue,3,High,Routing rule outdated,Review routing matrix,Operations Lead,2026-09-22,Open
