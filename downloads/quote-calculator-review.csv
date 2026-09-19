@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","QC-01","Executed","Pass","Regular 2 bed 1 bath plus travel/tax","111.24","111.24"
+"Test","QC-02","Executed","Pass","Weekly deep 3 bed 2.5 bath plus oven","224.42","224.42"
+"Test","QC-03","Executed","Pass","Negative counts and extras","97.20 plus errors","97.20 plus validation messages"
+"Test","QC-04","Executed","Pass","Tax 150 and minimum -10","Clamp to 100 and 0","Clamped with errors"
+"Issue","QC-I01","Verified","Medium","No committed automated regression suite","Version-control test vectors","Source review at commit 4d48e35"
+"Issue","QC-I02","Illustrative","High","Rule changed without documentation","One approved rule source","Scenario only"
+"Issue","QC-I03","Illustrative","Medium","Locale/rounding mismatch","Owner approval of currency/tax/rounding","Scenario only"

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Searchable demonstration case studies in quality assurance, data quality, documentation, operations support and process improvement." />
+    <meta name="theme-color" content="#153d3a" />
+    <meta property="og:title" content="QA & Operations Case Studies | Shafeeqah Francis" />
+    <meta property="og:description" content="Evidence-led portfolio demonstrations with test plans, scorecards, issue registers, SOPs and downloadable QA materials." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shafeeqahfrancis-gif.github.io/portfolio/case-studies/" />
+    <meta property="og:image" content="https://shafeeqahfrancis-gif.github.io/portfolio/assets/case-study-preview.svg" />
+    <meta property="og:image:alt" content="Shafeeqah Francis QA and operations demonstration case studies" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>QA & Operations Case Studies | Shafeeqah Francis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Shafeeqah Francis home"><span class="brand-mark">SF</span><span>Shafeeqah Francis</span></a>
+      <nav class="collection-nav" aria-label="Case study navigation"><a href="../index.html">Portfolio</a><a href="#collection">Case studies</a><a class="nav-cta" href="../index.html#contact">Contact</a></nav>
+    </header>
+    <main id="main">
+      <section class="collection-hero">
+        <p class="eyebrow">Demonstration case-study collection</p>
+        <h1>Quality review, made visible.</h1>
+        <p class="hero-summary">Eight structured demonstrations show how a reviewer can define scope, test a workflow, separate evidence from examples, log issues and turn findings into practical operating steps.</p>
+        <div class="disclosure"><strong>Attribution note:</strong> these are portfolio demonstrations, not completed client engagements. Source checks dated 18 September 2026 were executed by NextGenWebs/Codex and are not attributed to Shafeeqah. Each walkthrough identifies the human review she must complete before describing a contribution as her own.</div>
+      </section>
+
+      <section class="section compact-section" id="collection">
+        <div class="section-heading"><div><p class="eyebrow">Browse the collection</p><h2>Filter by industry or skill</h2></div><p id="result-count" aria-live="polite"></p></div>
+        <div class="filter-panel" role="search">
+          <label class="search-field" for="case-search">Search case studies<input id="case-search" type="search" placeholder="Try data quality, SOP or retail" /></label>
+          <div><span class="filter-label">Industry</span><div class="filter-buttons" id="industry-filters" aria-label="Filter by industry"></div></div>
+          <div><span class="filter-label">Skill</span><div class="filter-buttons" id="skill-filters" aria-label="Filter by skill"></div></div>
+          <button class="text-button" id="clear-filters" type="button">Clear filters</button>
+        </div>
+        <div class="case-grid" id="case-grid"></div>
+        <p class="empty-state" id="empty-state" hidden>No case studies match those filters.</p>
+      </section>
+
+      <section class="section method-section">
+        <div><p class="eyebrow">Common scoring model</p><h2>A score is a discussion aid, not a claim of certification.</h2></div>
+        <div class="prose"><p>Each case uses five weighted criteria. A criterion scores 0 when absent or untested, 1 when materially incomplete, 2 when partly effective, 3 when usable with small gaps, and 4 when clearly evidenced and repeatable. The weighted total is converted to a percentage.</p><p>Scores describe the reviewed sample and scope only. They do not establish legal compliance, clinical validity, investment expertise, security certification or business outcomes.</p><a class="button secondary" href="../downloads/project-coverage-matrix.csv" download>Download coverage matrix</a></div>
+      </section>
+    </main>
+    <footer><p>© <span id="year"></span> Shafeeqah Francis</p><p>Demonstration case studies · QA · Operations</p></footer>
+    <script src="case-studies.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","PI-01","Verified","Observed","Inspect required part fields","SKU, name and manufacturer mandatory","Required attributes present"
+"Test","PI-02","Verified","Observed","Inspect duplicate-SKU prevention","Normalized duplicate blocked","No duplicate check found in add/update logic"
+"Test","PI-03","Verified","Observed","Inspect negative stock input","Negative values rejected","Inputs use min=0 and parsed defaults"
+"Test","PI-04","Illustrative","Not run","Count-to-system reconciliation","Variance and approval retained","No real stock used"
+"Issue","PI-I01","Verified","High","SKU uniqueness is not enforced","Normalize and block duplicates","Source review at commit 34826ee"
+"Issue","PI-I02","Verified","Medium","No reorder/minimum relationship rule","Define and validate relationship","Source review at commit 34826ee"
+"Issue","PI-I03","Illustrative","Medium","Browser copies may diverge","Define one controlled source","Scenario only"

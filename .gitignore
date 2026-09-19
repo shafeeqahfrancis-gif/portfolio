@@ -1,2 +1,5 @@
 tmp/
 tools/capture_site.mjs
+
+# Local reviewer notes are intentionally never published or committed.
+private-review/
