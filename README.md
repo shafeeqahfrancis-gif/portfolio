@@ -30,6 +30,16 @@ In the repository settings, open **Pages**, choose **Deploy from a branch**, sel
 
 Technical checks in the case-study collection identify their actual executor. They are not attributed to Shafeeqah. A gitignored private-review folder can be used locally for her notes and screenshots; it must not be added to the public repository or Pages artifact.
 
-## Next profile update
+## Contact
 
-Add the verified LinkedIn URL, direct contact information, employment history, education and quantified achievements when those details are confirmed.
+- LinkedIn: <https://www.linkedin.com/in/shafeeqa-francis-465984211/>
+- WhatsApp: +27 61 092 2970
+- Enquiry form: `enquire.html` (stores a brief after a successful save; opening WhatsApp does not send a message)
+
+## Theme and chrome
+
+Every public page uses the shared header/footer, SF favicon, native 100×100 portrait, and Light/Dark/System theme control stored in `localStorage`.
+
+## Enquiry backend
+
+Public submissions call the Exchange-Line Supabase project through `submit-shafeeqah-enquiry` and `record-shafeeqah-event`. Shafeeqah records are namespaced with `site_id = shafeeqah-portfolio` and are not Exchange-Line leads. Migrations are additive; they are only live after an authorised apply.

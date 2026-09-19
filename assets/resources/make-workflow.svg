@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="t d">
+  <title id="t">Abstract connected workflow nodes</title>
+  <desc id="d">Original illustration of three connected process nodes. Not a product screenshot.</desc>
+  <rect width="640" height="360" rx="24" fill="#e8f3ef"/>
+  <rect x="56" y="92" width="150" height="88" rx="16" fill="#153d3a"/>
+  <rect x="245" y="140" width="150" height="88" rx="16" fill="#2b6962"/>
+  <rect x="434" y="92" width="150" height="88" rx="16" fill="#c89b54"/>
+  <path d="M206 136h39" stroke="#153d3a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M395 184h39" stroke="#153d3a" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="225" cy="136" r="8" fill="#153d3a"/>
+  <circle cx="415" cy="184" r="8" fill="#153d3a"/>
+</svg>

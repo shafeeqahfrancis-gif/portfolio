@@ -13,23 +13,24 @@
     <meta property="og:image:alt" content="Shafeeqah Francis QA and operations demonstration case studies" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>QA & Operations Case Studies | Shafeeqah Francis</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../assets/shafeeqah-francis-portrait-100x100.jpeg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <script src="../js/site-config.js"></script>
     <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../chrome.css" />
   </head>
-  <body>
+  <body data-page="case-collection">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <a class="brand" href="../index.html" aria-label="Shafeeqah Francis home"><span class="brand-mark">SF</span><span>Shafeeqah Francis</span></a>
-      <nav class="collection-nav" aria-label="Case study navigation"><a href="../index.html">Portfolio</a><a href="#collection">Case studies</a><a class="nav-cta" href="../index.html#contact">Contact</a></nav>
-    </header>
+    <div id="site-chrome-header"></div>
     <main id="main">
       <section class="collection-hero">
         <p class="eyebrow">Demonstration case-study collection</p>
         <h1>Quality review, made visible.</h1>
         <p class="hero-summary">Eight structured demonstrations show how a reviewer can define scope, test a workflow, separate evidence from examples, log issues and turn findings into practical operating steps.</p>
-        <div class="disclosure"><strong>Attribution note:</strong> these are portfolio demonstrations, not completed client engagements. Source checks dated 18 September 2026 were executed by NextGenWebs/Codex and are not attributed to Shafeeqah. Each walkthrough identifies the human review she must complete before describing a contribution as her own.</div>
+        <div class="disclosure"><strong>Attribution note:</strong> these are portfolio demonstrations, not completed client engagements. Shafeeqah reviewed and approved the 18 September 2026 findings, assessments and recommendations. Technical checks already performed by NextGenWebs/Codex keep that attribution. New code fixes after that review are implemented by NextGenWebs and stay labelled until they are verified and, where needed, signed off.</div>
       </section>
 
       <section class="section compact-section" id="collection">
@@ -49,7 +50,8 @@
         <div class="prose"><p>Each case uses five weighted criteria. A criterion scores 0 when absent or untested, 1 when materially incomplete, 2 when partly effective, 3 when usable with small gaps, and 4 when clearly evidenced and repeatable. The weighted total is converted to a percentage.</p><p>Scores describe the reviewed sample and scope only. They do not establish legal compliance, clinical validity, investment expertise, security certification or business outcomes.</p><a class="button secondary" href="../downloads/project-coverage-matrix.csv" download>Download coverage matrix</a></div>
       </section>
     </main>
-    <footer><p>© <span id="year"></span> Shafeeqah Francis</p><p>Demonstration case studies · QA · Operations</p></footer>
+    <div id="site-chrome-footer"></div>
+    <script src="../js/site.js"></script>
     <script src="case-studies.js"></script>
   </body>
 </html>
