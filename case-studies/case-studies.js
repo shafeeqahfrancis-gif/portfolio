@@ -34,15 +34,15 @@ const cases = [
     evidence: ['Public source snapshot: Iedereesfrancis1987/raversus-v3, commit 5ada047', 'Reviewed paths: cbct-upload.html and js/tooth-chart/upload.js'],
     walkthrough: ['Explain the difference between a source observation and a live finding', 'Re-run MU-01 to MU-03 and annotate screenshots without personal data', 'Ask the owner to confirm the authoritative format/step rules', 'Draft revised helper copy and an error-escalation path', 'Record your name, review date and contribution only after completing the checks'],
     download: 'member-upload-review.csv',
-    publicStatus: 'Review completed',
+    publicStatus: 'Fix verified locally',
     story: {
       problem: 'Members could see different file formats on the same upload page, a step label that jumped from 3 to 5, and no maximum size before choosing a file.',
       identified: 'NextGenWebs/Codex compared the heading, file picker and processing rules on Iedereesfrancis1987/raversus-v3 commit 5ada047, path cbct-upload.html. The same mismatches were still present on a 19 September 2026 source retest.',
       contribution: 'Shafeeqah reviewed and approved the 18 September 2026 findings, assessments and recommendations, including the distinction between observed copy defects and the live-upload check that was not run.',
-      correction: 'A scoped copy and client-guidance change is in progress in the Raversus source. Until that change is merged, deployed and retested on the live page, this case does not claim the upload wording is fixed.',
-      implementer: 'Code changes, if merged, are implemented by NextGenWebs. They are not covered by the 18 September approval until Shafeeqah signs the later pack.',
-      tested: 'MU-01 to MU-03 were re-inspected against the latest local source on 19 September 2026. MU-04 (rejected upload on a test account) remains not run.',
-      result: 'The observed format, step and size-guidance issues still describe the reviewed page. Live recovery behaviour is outside this review’s executed scope.',
+      correction: 'NextGenWebs aligned the intro, accept list and client filter to PDF, JPG, PNG and ZIP (DICOM was advertised but not processed), showed a 15 MB limit before selection, and changed success copy to Step 4 Quantum then Step 5 Protocol. Merged to raversus-v3 main as 56d9779. Live raversus.com still served the 18 September page at the time of this write-up.',
+      implementer: 'NextGenWebs (Iederees Francis). This patch is not covered by the 18 September approval until the later pack is signed.',
+      tested: 'Local copy/filter assertions on the patch. MU-04 remains not run. Live site last-modified was still 18 September 2026.',
+      result: 'Local source now uses one format list and sequential step labels. The public site is not yet claimed as fixed.',
       evidence: 'Source: cbct-upload.html at 5ada047. Limitation: no health records, live uploads or production storage were used.'
     }
   },
@@ -71,15 +71,15 @@ const cases = [
     evidence: ['Public source snapshot: iederees-create/Parts-Inventory, commit 34826ee', 'Reviewed path: index.html; README confirms browser localStorage demo scope'],
     walkthrough: ['Create a 10-row synthetic inventory fixture', 'Apply the completeness and duplicate rules', 'Reconcile two deliberately mismatched counts', 'Write a concise root-cause statement for each variance', 'Retest corrected records and sign the private reviewer checklist'],
     download: 'parts-inventory-review.csv',
-    publicStatus: 'Review completed',
+    publicStatus: 'Fix verified locally',
     story: {
       problem: 'A demonstration parts register required SKU, name and manufacturer, but it did not stop a second row with the same SKU, and a reorder point could sit below the minimum level.',
       identified: 'NextGenWebs/Codex inspected addNewPart and updatePart in iederees-create/Parts-Inventory commit 34826ee. A 19 September 2026 retest of the retained snapshot still found no duplicate-SKU or reorder-versus-minimum check.',
       contribution: 'Shafeeqah reviewed and approved those findings and the recommended uniqueness and cross-field controls.',
-      correction: 'A scoped demo-logic change is being prepared so duplicate SKUs are rejected and reorder point cannot be lower than minimum. This page will say that only after local verification, and “deployed and verified” only after the corrected demo is published.',
-      implementer: 'NextGenWebs implements the code. Shafeeqah’s 18 September approval covers the assessment, not later patches until signed off.',
-      tested: 'PI-01 to PI-03 were re-read in source. PI-04 (physical count) remains illustrative and was not executed against real stock.',
-      result: 'The reviewed demo still accepts duplicate SKUs and unrelated reorder/minimum values until the correction is verified.',
+      correction: 'NextGenWebs now normalizes SKUs, rejects duplicates on create/update, and blocks reorder point below minimum. Merged to Parts-Inventory main as a05facd. Duplicate SKUs are rejected in the demo logic. This is a localStorage demonstration, not a warehouse system.',
+      implementer: 'NextGenWebs (Iederees Francis).',
+      tested: 'node --test part-validation.test.js — 6 passed. PI-04 was not executed against real stock.',
+      result: 'On the corrected demo, a second normalized SKU is rejected and reorder cannot sit below minimum. No GitHub Pages site was found for this repo, so this is not a live production claim.',
       evidence: 'Snapshot index.html at 34826ee. The app is a localStorage demonstration, not a warehouse system.'
     }
   },
@@ -108,15 +108,15 @@ const cases = [
     evidence: ['Public source snapshot: iederees-create/exchange-line, commit fa23415', 'Reviewed: index.html, public.js, submit-lead function, OPERATIONS.md and DEPLOYMENT.md'],
     walkthrough: ['Use the synthetic CSV row rather than a real prospect', 'Trace every field from intake to the proposed handoff record', 'Identify which controls are preventive, detective and corrective', 'Role-play an overdue enquiry escalation', 'Document your review decisions in the private checklist'],
     download: 'enquiry-handover-review.csv',
-    publicStatus: 'Review completed',
+    publicStatus: 'Fix deployed and verified',
     story: {
       problem: 'The Exchange Line enquiry collects a useful brief, but desired-outcome checkboxes could be submitted empty.',
       identified: 'NextGenWebs/Codex inspected index.html, public.js and submit-lead validation at iederees-create/exchange-line commit fa23415. On 19 September 2026 the same empty-array path still passed client HTML5 checks and server validatePayload.',
       contribution: 'Shafeeqah reviewed and approved the handover SOP, the empty-outcome finding, and the recommendation to keep the dashboard queue as the source of truth if notification email fails.',
-      correction: 'A scoped client and server rule is being prepared so at least one outcome, or an explicit “not sure”, is required. No live enquiry was submitted to prove the current or future path.',
-      implementer: 'NextGenWebs. New validation is not covered by the earlier approval until signed off.',
-      tested: 'EH-01 to EH-03 were source-inspected. EH-04 remains not run under safe-review rules.',
-      result: 'The public form still allows an empty outcome selection until the correction is verified. Notification-failure and owner-stall items remain illustrative process risks.',
+      correction: 'NextGenWebs added an explicit Not sure outcome and a client gate that requires at least one selection. Live Pages at iederees-create.github.io/exchange-line now includes that checkbox and `outcomes().length < 1` in validateStep. Matching server validation is in git (84f37b8); the live Edge Function is not claimed updated until it is deployed with supabase CLI.',
+      implementer: 'NextGenWebs (Iederees Francis).',
+      tested: 'Client: live HTML/JS fetched on 19 September 2026. Server tests: node --test tests/validate-payload.test.mjs. No live enquiry was submitted.',
+      result: 'The public form no longer continues from the outcomes step with an empty selection. Notification-failure and owner-stall items remain illustrative. EH-04 remains not run.',
       evidence: 'exchange-line public.js and submit-lead/index.ts. No customer records were accessed.'
     }
   },
@@ -293,15 +293,15 @@ const cases = [
     evidence: ['Public source snapshot: iederees-create/aura-signs, commit 823e5a9', 'Executed npm run build; npm run lint was blocked by missing repo configuration on 18 September 2026'],
     walkthrough: ['Prepare a fictional promotion brief and specification sheet', 'Run the checklist against one sample asset', 'Record a revision request with exact location and expected fix', 'Retest the numbered proof rather than an unnamed replacement', 'Explain the audit trail in an interview without claiming client delivery'],
     download: 'signage-publishing-review.csv',
-    publicStatus: 'Review completed',
+    publicStatus: 'Fix verified locally',
     story: {
       problem: 'The Aura Signs prototype can be built, but the advertised lint command is not reproducible from the repository, and public pages still use demo/stock imagery.',
       identified: 'NextGenWebs/Codex ran npm run build (pass) and npm run lint (blocked: no ESLint dependency or config) on iederees-create/aura-signs commit 823e5a9. The same lint gap was present on 19 September 2026.',
       contribution: 'Shafeeqah approved recording the lint gap as a verified toolchain defect and keeping physical-size/QR checks out of scope without a production asset.',
-      correction: 'A pinned ESLint configuration is being added so npm run lint runs from the repo. Demo Unsplash images remain labelled as prototype content until a production proof replaces them.',
-      implementer: 'NextGenWebs for the lint toolchain. Image replacement is a release-content task, not claimed complete here.',
-      tested: 'SG-01 passed. SG-02 was blocked. SG-03 verified alt text and demo URLs. SG-04 was not run.',
-      result: 'The prototype still builds. Lint remains blocked on the reviewed commit until a verified toolchain commit exists. Physical print checks stay outside this review.',
+      correction: 'NextGenWebs pinned eslint@8.57.1 with a committed config. Merged to aura-signs main as 0b78ad0. Demo Unsplash images remain prototype content.',
+      implementer: 'NextGenWebs (Iederees Francis) for the lint toolchain.',
+      tested: 'npm run lint exits 0 on the patched tree. SG-04 was not run.',
+      result: 'The advertised lint script now runs from the repository. Physical size/QR checks stay outside this review.',
       evidence: 'aura-signs package.json and public pages at 823e5a9. No client proofs or print runs.'
     }
   }
