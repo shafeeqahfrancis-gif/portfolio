@@ -1,5 +1,12 @@
 const REVIEW_DATE = '18 September 2026';
+const RETEST_DATE = '19 September 2026';
 const SCALE = '0 absent/untested · 1 materially incomplete · 2 partly effective · 3 usable with small gaps · 4 clearly evidenced and repeatable';
+const STATUS_CLASS = {
+  'Review completed': 'verified',
+  'Fix verified locally': 'local',
+  'Fix deployed and verified': 'pass',
+  'Outside this review’s scope': 'scope',
+};
 
 const cases = [
   {
@@ -26,7 +33,18 @@ const cases = [
     sop: ['Confirm the approved file specification with the process owner', 'Prepare non-sensitive valid, invalid-type and over-limit fixtures', 'Record page/version and expected outcome before testing', 'Execute without real member data and redact any identifiers', 'Log the result, owner, priority and retest evidence'],
     evidence: ['Public source snapshot: Iedereesfrancis1987/raversus-v3, commit 5ada047', 'Reviewed paths: cbct-upload.html and js/tooth-chart/upload.js'],
     walkthrough: ['Explain the difference between a source observation and a live finding', 'Re-run MU-01 to MU-03 and annotate screenshots without personal data', 'Ask the owner to confirm the authoritative format/step rules', 'Draft revised helper copy and an error-escalation path', 'Record your name, review date and contribution only after completing the checks'],
-    download: 'member-upload-review.csv'
+    download: 'member-upload-review.csv',
+    publicStatus: 'Review completed',
+    story: {
+      problem: 'Members could see different file formats on the same upload page, a step label that jumped from 3 to 5, and no maximum size before choosing a file.',
+      identified: 'NextGenWebs/Codex compared the heading, file picker and processing rules on Iedereesfrancis1987/raversus-v3 commit 5ada047, path cbct-upload.html. The same mismatches were still present on a 19 September 2026 source retest.',
+      contribution: 'Shafeeqah reviewed and approved the 18 September 2026 findings, assessments and recommendations, including the distinction between observed copy defects and the live-upload check that was not run.',
+      correction: 'A scoped copy and client-guidance change is in progress in the Raversus source. Until that change is merged, deployed and retested on the live page, this case does not claim the upload wording is fixed.',
+      implementer: 'Code changes, if merged, are implemented by NextGenWebs. They are not covered by the 18 September approval until Shafeeqah signs the later pack.',
+      tested: 'MU-01 to MU-03 were re-inspected against the latest local source on 19 September 2026. MU-04 (rejected upload on a test account) remains not run.',
+      result: 'The observed format, step and size-guidance issues still describe the reviewed page. Live recovery behaviour is outside this review’s executed scope.',
+      evidence: 'Source: cbct-upload.html at 5ada047. Limitation: no health records, live uploads or production storage were used.'
+    }
   },
   {
     id: 'parts-inventory-data-quality', number: '02', title: 'Parts Inventory Data-Quality Review',
@@ -52,7 +70,18 @@ const cases = [
     sop: ['Freeze movements for the count window', 'Export the approved stock snapshot', 'Count by SKU and location using two-person verification for material variances', 'Calculate variance and classify the likely cause', 'Approve adjustments and retain the before/after evidence'],
     evidence: ['Public source snapshot: iederees-create/Parts-Inventory, commit 34826ee', 'Reviewed path: index.html; README confirms browser localStorage demo scope'],
     walkthrough: ['Create a 10-row synthetic inventory fixture', 'Apply the completeness and duplicate rules', 'Reconcile two deliberately mismatched counts', 'Write a concise root-cause statement for each variance', 'Retest corrected records and sign the private reviewer checklist'],
-    download: 'parts-inventory-review.csv'
+    download: 'parts-inventory-review.csv',
+    publicStatus: 'Review completed',
+    story: {
+      problem: 'A demonstration parts register required SKU, name and manufacturer, but it did not stop a second row with the same SKU, and a reorder point could sit below the minimum level.',
+      identified: 'NextGenWebs/Codex inspected addNewPart and updatePart in iederees-create/Parts-Inventory commit 34826ee. A 19 September 2026 retest of the retained snapshot still found no duplicate-SKU or reorder-versus-minimum check.',
+      contribution: 'Shafeeqah reviewed and approved those findings and the recommended uniqueness and cross-field controls.',
+      correction: 'A scoped demo-logic change is being prepared so duplicate SKUs are rejected and reorder point cannot be lower than minimum. This page will say that only after local verification, and “deployed and verified” only after the corrected demo is published.',
+      implementer: 'NextGenWebs implements the code. Shafeeqah’s 18 September approval covers the assessment, not later patches until signed off.',
+      tested: 'PI-01 to PI-03 were re-read in source. PI-04 (physical count) remains illustrative and was not executed against real stock.',
+      result: 'The reviewed demo still accepts duplicate SKUs and unrelated reorder/minimum values until the correction is verified.',
+      evidence: 'Snapshot index.html at 34826ee. The app is a localStorage demonstration, not a warehouse system.'
+    }
   },
   {
     id: 'enquiry-handover', number: '03', title: 'Enquiry Qualification & Handover Review',
@@ -78,7 +107,18 @@ const cases = [
     sop: ['Review new and overdue inbound requests', 'Validate requirements; do not infer price or configuration', 'Assign owner, next action and follow-up date', 'Prepare a brief from confirmed information only', 'Close the handoff only when outcome and evidence are recorded'],
     evidence: ['Public source snapshot: iederees-create/exchange-line, commit fa23415', 'Reviewed: index.html, public.js, submit-lead function, OPERATIONS.md and DEPLOYMENT.md'],
     walkthrough: ['Use the synthetic CSV row rather than a real prospect', 'Trace every field from intake to the proposed handoff record', 'Identify which controls are preventive, detective and corrective', 'Role-play an overdue enquiry escalation', 'Document your review decisions in the private checklist'],
-    download: 'enquiry-handover-review.csv'
+    download: 'enquiry-handover-review.csv',
+    publicStatus: 'Review completed',
+    story: {
+      problem: 'The Exchange Line enquiry collects a useful brief, but desired-outcome checkboxes could be submitted empty.',
+      identified: 'NextGenWebs/Codex inspected index.html, public.js and submit-lead validation at iederees-create/exchange-line commit fa23415. On 19 September 2026 the same empty-array path still passed client HTML5 checks and server validatePayload.',
+      contribution: 'Shafeeqah reviewed and approved the handover SOP, the empty-outcome finding, and the recommendation to keep the dashboard queue as the source of truth if notification email fails.',
+      correction: 'A scoped client and server rule is being prepared so at least one outcome, or an explicit “not sure”, is required. No live enquiry was submitted to prove the current or future path.',
+      implementer: 'NextGenWebs. New validation is not covered by the earlier approval until signed off.',
+      tested: 'EH-01 to EH-03 were source-inspected. EH-04 remains not run under safe-review rules.',
+      result: 'The public form still allows an empty outcome selection until the correction is verified. Notification-failure and owner-stall items remain illustrative process risks.',
+      evidence: 'exchange-line public.js and submit-lead/index.ts. No customer records were accessed.'
+    }
   },
   {
     id: 'digital-guide-release', number: '04', title: 'Digital Download Release-Readiness Review',
@@ -104,7 +144,18 @@ const cases = [
     sop: ['Duplicate the source package and record a version', 'Replace every placeholder from an approved content sheet', 'Run link, spelling, responsive and accessibility checks', 'Confirm indexing choice and remove internal notes', 'Zip, reopen, compare file inventory and record approval'],
     evidence: ['Public source snapshot: iederees-create/airbnb-guest-welcome-guide-template, commit b3868a8', 'Reviewed: index.html, site-config.js and app.js'],
     walkthrough: ['Customize a copy using wholly fictional property data', 'Run the placeholder search and record every hit/disposition', 'Test the package from a fresh extracted folder', 'Capture mobile/desktop screenshots and a release decision', 'Explain why release evidence matters as much as the checklist'],
-    download: 'digital-guide-release-review.csv'
+    download: 'digital-guide-release-review.csv',
+    publicStatus: 'Review completed',
+    story: {
+      problem: 'A buyer-facing guest-guide sample still contains fictional address, lockbox, Wi-Fi and phone values, and it lacks a machine-readable release manifest.',
+      identified: 'NextGenWebs/Codex reviewed iederees-create/airbnb-guest-welcome-guide-template commit b3868a8. The 19 September 2026 product pack still includes those placeholders by design and a human START-HERE list rather than a versioned manifest.',
+      contribution: 'Shafeeqah approved treating placeholder replacement as a blocking release check and keeping the sample labelled as fictional.',
+      correction: 'No claim is made that placeholders have been removed from the sample. A release manifest is a proposed packaging improvement, not a completed buyer-package change unless a later verified commit says so.',
+      implementer: 'NextGenWebs for any later packaging change.',
+      tested: 'DG-01 to DG-03 were re-inspected. DG-04 (final buyer ZIP pass) remains not run.',
+      result: 'The sample remains a customisable template with fictional details. Indexing default is still noindex on the uncustomized file.',
+      evidence: 'site-config.js and index.html in the retained pack. No real property or guest data.'
+    }
   },
   {
     id: 'quote-calculator', number: '05', title: 'Quote Calculator Rules & Edge-Case Review',
@@ -122,7 +173,7 @@ const cases = [
       ['QC-04','Tax 150% and minimum -10','Clamp to 100% and 0 with visible errors','Both values clamped and errors returned','Pass']
     ],
     issues: [
-      ['QC-I01','Verified','Medium','The reviewed repository has no committed automated regression suite','Promote the synthetic vectors into version-controlled unit tests.'],
+      ['QC-I01','Resolved on later source','Medium','The 4d48e35 snapshot had no committed automated suite; latest source now includes pricing-engine.test.js and it passed on 19 September 2026','Keep the suite in version control and add any newly approved vectors before a buyer-specific release.'],
       ['QC-I02','Illustrative','High','A business may change one rule without updating its worksheet/instructions','Use one approved rules source and a release sign-off.'],
       ['QC-I03','Illustrative','Medium','Locale or rounding expectations may differ by buyer','Confirm currency, tax basis and rounding with the process owner.']
     ],
@@ -130,7 +181,18 @@ const cases = [
     sop: ['Obtain an approved pricing-rule sheet', 'Translate each rule into positive, boundary and invalid test cases', 'Calculate expected results independently', 'Run the engine and compare every line, not only the total', 'Log failures, retest fixes and archive the approved version'],
     evidence: ['Public source snapshot: iederees-create/cleaning-business-instant-quote-calculator, commit 4d48e35', 'Executed locally against pricing-engine.js and sample-config.json on 18 September 2026'],
     walkthrough: ['Recalculate QC-01 manually and explain each line', 'Add one area-mode case and one tax-exclusion case', 'Explain why a passing total can still hide a wrong breakdown', 'Draft a defect with reproducible inputs if any result differs', 'Record your independently executed evidence before claiming participation'],
-    download: 'quote-calculator-review.csv'
+    download: 'quote-calculator-review.csv',
+    publicStatus: 'Review completed',
+    story: {
+      problem: 'A quote engine must apply rates, extras, travel and tax in a documented order and stay an estimate, not a sent price.',
+      identified: 'NextGenWebs/Codex executed four synthetic vectors against pricing-engine.js at commit 4d48e35 on 18 September 2026. On 19 September 2026 the latest local product source already contained pricing-engine.test.js; that file was executed the same day with 20 assertions across 7 cases, all passing.',
+      contribution: 'Shafeeqah reviewed and approved the calculation results, the estimate disclosure, and the recommendation to keep approved pricing rules in one place.',
+      correction: 'QC-I01 (no committed automated suite) is already addressed in the latest source folder by the presence of pricing-engine.test.js. This page does not treat that as a deployed customer-price change. Historical snapshot 4d48e35 remains the dated execution evidence for QC-01 to QC-04.',
+      implementer: 'The test file is in the NextGenWebs product source. Shafeeqah’s review covers the 18 September assessment.',
+      tested: 'QC-01 to QC-04 passed on 18 September 2026 against 4d48e35. On 19 September 2026, node pricing-engine.test.js passed 20 assertions across 7 cases in the latest source folder.',
+      result: 'The reviewed engine returned 111.24, 224.42, 97.20 and clamped invalid tax/minimum values on the original vectors. No live enquiry or real client price was used.',
+      evidence: 'pricing-engine.js, sample-config.json, and later pricing-engine.test.js. Synthetic configuration only.'
+    }
   },
   {
     id: 'trading-dashboard', number: '06', title: 'Trading Dashboard Data & Disclosure Review',
@@ -156,7 +218,18 @@ const cases = [
     sop: ['Freeze the tested commit and synthetic fixtures', 'Run unit tests, build and route checks', 'Compare displayed labels, timestamps and derived values', 'Classify failures versus warnings and record evidence', 'Release only after critical issues close and disclosures remain visible'],
     evidence: ['Public source snapshot: iederees-create/deriv-affiliate-launchpad-template, commit e2f7e46', 'Executed npm test, npm run build and npm run check:links on 18 September 2026'],
     walkthrough: ['Read one calculator test and explain expected math', 'Trace one timestamp from source to displayed label', 'Test a mocked stale response without connecting a real account', 'Explain why this is reporting QA rather than investment expertise', 'Record your own run output and review notes privately'],
-    download: 'trading-dashboard-review.csv'
+    download: 'trading-dashboard-review.csv',
+    publicStatus: 'Review completed',
+    story: {
+      problem: 'A practice trading dashboard must keep calculations consistent and keep demo/risk wording visible, without turning a source review into investment advice.',
+      identified: 'NextGenWebs/Codex ran unit tests, production build and route checks on iederees-create/deriv-affiliate-launchpad-template commit e2f7e46. The main JavaScript chunk triggered a >500 kB warning (720.45 kB). Latest local source still ships a single JS chunk.',
+      contribution: 'Shafeeqah approved reporting this as a build warning, not a trading-performance finding, and keeping demo/practice wording attached to values.',
+      correction: 'No strategy, payout or live-trading change was made for this review. Chunk-splitting remains a proposed improvement, not a verified fix.',
+      implementer: 'Not applicable for a completed code fix in this review.',
+      tested: 'TD-01 to TD-03 passed on the dated commit. TD-04 remains a warning. No live trades were run.',
+      result: 'Deterministic tests and the production build passed on e2f7e46. Stale-feed and out-of-context demo-value risks stay illustrative.',
+      evidence: 'npm test, npm run build and route checks on 18 September 2026. Educational/demo context only.'
+    }
   },
   {
     id: 'lead-research', number: '07', title: 'Lead Research Provenance & Duplicate-Control Review',
@@ -182,7 +255,18 @@ const cases = [
     sop: ['Confirm the ICP and exclusion rules', 'Research only approved public professional sources', 'Capture evidence and date before scoring', 'Normalize and de-duplicate the batch', 'Second-review uncertain/high-priority rows and record the final decision'],
     evidence: ['Reviewed NextGenWebs Qualified Lead Research project page and sample files at portfolio commit 890a60c', 'Synthetic review materials contain no real names, contacts or private data'],
     walkthrough: ['Create five fictional rows including one duplicate', 'Apply criteria without inventing missing facts', 'Explain two different confidence levels', 'Perform a second-review disagreement and document the decision', 'Keep the completed personal contribution record private'],
-    download: 'lead-research-review.csv'
+    download: 'lead-research-review.csv',
+    publicStatus: 'Outside this review’s scope',
+    story: {
+      problem: 'A prospect list is only useful when criteria, evidence and duplicate handling are visible. Guessed details and undated scores create rework.',
+      identified: 'NextGenWebs/Codex reviewed the NextGenWebs Qualified Lead Research project page and fictional sample files at portfolio commit 890a60c. Duplicate-name, stale-evidence and inferred-detail items were designed as illustrative process risks, not observed live-data defects.',
+      contribution: 'Shafeeqah approved keeping scores as attention aids, not predictions of replies, appointments or revenue, and using unknown/not-verified instead of inventing missing facts.',
+      correction: 'No production prospect database was changed. The public methodology already states that scoring is not an outcome prediction.',
+      implementer: 'Not applicable.',
+      tested: 'LR-01 and LR-04 were verified in the public methodology. LR-02 and LR-03 remain illustrative on fictional rows.',
+      result: 'The demonstration still uses fictional rows. No scraping, outreach or real personal data was used.',
+      evidence: 'Lead research project page and labelled fictional CSV/MD samples.'
+    }
   },
   {
     id: 'signage-publishing', number: '08', title: 'Retail Signage Asset & Publishing Review',
@@ -208,7 +292,18 @@ const cases = [
     sop: ['Lock the approved brief and asset specification', 'Preflight wording, dimensions, images, links and rights', 'Export a numbered proof and collect explicit approval', 'Run final-size/QR/contrast checks on the approved version', 'Archive source, export, approval and publication record together'],
     evidence: ['Public source snapshot: iederees-create/aura-signs, commit 823e5a9', 'Executed npm run build; npm run lint was blocked by missing repo configuration on 18 September 2026'],
     walkthrough: ['Prepare a fictional promotion brief and specification sheet', 'Run the checklist against one sample asset', 'Record a revision request with exact location and expected fix', 'Retest the numbered proof rather than an unnamed replacement', 'Explain the audit trail in an interview without claiming client delivery'],
-    download: 'signage-publishing-review.csv'
+    download: 'signage-publishing-review.csv',
+    publicStatus: 'Review completed',
+    story: {
+      problem: 'The Aura Signs prototype can be built, but the advertised lint command is not reproducible from the repository, and public pages still use demo/stock imagery.',
+      identified: 'NextGenWebs/Codex ran npm run build (pass) and npm run lint (blocked: no ESLint dependency or config) on iederees-create/aura-signs commit 823e5a9. The same lint gap was present on 19 September 2026.',
+      contribution: 'Shafeeqah approved recording the lint gap as a verified toolchain defect and keeping physical-size/QR checks out of scope without a production asset.',
+      correction: 'A pinned ESLint configuration is being added so npm run lint runs from the repo. Demo Unsplash images remain labelled as prototype content until a production proof replaces them.',
+      implementer: 'NextGenWebs for the lint toolchain. Image replacement is a release-content task, not claimed complete here.',
+      tested: 'SG-01 passed. SG-02 was blocked. SG-03 verified alt text and demo URLs. SG-04 was not run.',
+      result: 'The prototype still builds. Lint remains blocked on the reviewed commit until a verified toolchain commit exists. Physical print checks stay outside this review.',
+      evidence: 'aura-signs package.json and public pages at 823e5a9. No client proofs or print runs.'
+    }
   }
 ];
 
@@ -243,7 +338,7 @@ function renderCollection() {
   function update() {
     const query = search.value.trim().toLowerCase();
     const filtered = cases.filter((item) => (industry === 'All' || item.industry === industry) && (skill === 'All' || item.skills.includes(skill)) && (!query || `${item.title} ${item.summary} ${item.industry} ${item.skills.join(' ')}`.toLowerCase().includes(query)));
-    grid.innerHTML = filtered.map((item) => `<article class="case-card"><div class="case-meta"><span>${item.number}</span><span>${escapeHtml(item.industry)}</span></div><p class="demo-label">Demonstration case study</p><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.summary)}</p><div class="tag-list">${item.skills.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="case-card-footer"><span>Scope score <strong>${item.score}%</strong></span><a href="case-study.html?id=${encodeURIComponent(item.id)}">Open case study →</a></div></article>`).join('');
+    grid.innerHTML = filtered.map((item) => `<article class="case-card"><div class="case-meta"><span>${item.number}</span><span>${escapeHtml(item.industry)}</span></div><p class="demo-label">Demonstration case study</p><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.summary)}</p><p><span class="status-chip ${STATUS_CLASS[item.publicStatus] || ''}">${escapeHtml(item.publicStatus)}</span></p><div class="tag-list">${item.skills.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="case-card-footer"><span>Scope score <strong>${item.score}%</strong></span><a href="case-study.html?id=${encodeURIComponent(item.id)}" data-track="case_study_view" data-case="${escapeHtml(item.id)}">Open case study →</a></div></article>`).join('');
     document.querySelector('#result-count').textContent = `${filtered.length} of ${cases.length} case studies shown`;
     document.querySelector('#empty-state').hidden = filtered.length !== 0;
   }
@@ -266,22 +361,33 @@ function renderDetail() {
   document.querySelector('meta[name="description"]').setAttribute('content', item.summary);
   const issueRows = item.issues.map((row) => `<tr>${row.map((cell, index) => `<td${index === 1 ? `><span class="status ${cell.toLowerCase()}">${escapeHtml(cell)}</span>` : `>${escapeHtml(cell)}`}</td>`).join('')}</tr>`).join('');
   const testRows = item.tests.map((row) => `<tr>${row.map((cell, index) => `<td${index === 4 ? `><span class="status ${cell.toLowerCase().replace(' ','-')}">${escapeHtml(cell)}</span>` : `>${escapeHtml(cell)}`}</td>`).join('')}</tr>`).join('');
+  const story = item.story || {};
+  const narrative = `
+    <ol class="narrative">
+      <li><strong>The problem.</strong> ${escapeHtml(story.problem || item.context)}</li>
+      <li><strong>How it was identified.</strong> ${escapeHtml(story.identified || '')}</li>
+      <li><strong>Shafeeqah’s confirmed contribution.</strong> ${escapeHtml(story.contribution || '')}</li>
+      <li><strong>The implemented correction and implementer.</strong> ${escapeHtml(story.correction || '')} ${escapeHtml(story.implementer || '')}</li>
+      <li><strong>How the correction was tested.</strong> ${escapeHtml(story.tested || '')}</li>
+      <li><strong>The resulting behaviour.</strong> ${escapeHtml(story.result || '')}</li>
+      <li><strong>Supporting evidence and limitations.</strong> ${escapeHtml(story.evidence || item.limitations)}</li>
+    </ol>`;
   root.innerHTML = `
     <article>
-      <header class="detail-hero"><p class="demo-label">Demonstration case study · not a client engagement</p><p class="eyebrow">${escapeHtml(item.industry)} · ${escapeHtml(item.skills.join(' · '))}</p><h1>${escapeHtml(item.title)}</h1><p class="hero-summary">${escapeHtml(item.summary)}</p><div class="detail-facts"><div><span>Review date</span><strong>${REVIEW_DATE}</strong></div><div><span>Reviewed score</span><strong>${item.score}%</strong></div><div><span>Attribution</span><strong>Checks executed by NextGenWebs/Codex</strong></div></div><div class="disclosure"><strong>Contribution boundary:</strong> this page gives Shafeeqah a guided demonstration to complete. The recorded technical observations and automated results are not presented as her work. No employment, client engagement or business result is implied.</div></header>
-      ${section('Business context and review objective', `<p>${escapeHtml(item.context)}</p>`, '01 · Context')}
-      ${section('Scope and limitations', `<div class="two-column"><div><h3>Included</h3>${list(item.scope)}</div><div><h3>Limitations</h3><p>${escapeHtml(item.limitations)}</p></div></div>`, '02 · Boundaries')}
-      ${section('Operational review checklist', list(item.checklist), '03 · Test plan')}
+      <header class="detail-hero"><p class="demo-label">Demonstration case study · not a client engagement</p><p class="eyebrow">${escapeHtml(item.industry)} · ${escapeHtml(item.skills.join(' · '))}</p><h1>${escapeHtml(item.title)}</h1><p class="hero-summary">${escapeHtml(item.summary)}</p><div class="detail-facts"><div><span>Review date</span><strong>${REVIEW_DATE}</strong></div><div><span>Source retest</span><strong>${RETEST_DATE}</strong></div><div><span>Public status</span><strong>${escapeHtml(item.publicStatus)}</strong></div></div><div class="disclosure"><strong>Attribution:</strong> Shafeeqah reviewed and approved the 18 September 2026 findings, assessments and recommendations. Technical checks already executed by NextGenWebs/Codex keep that attribution. Later code changes name NextGenWebs as implementer and are not assumed covered by the earlier approval.</div></header>
+      ${section('What happened', narrative, '01 · Story')}
+      ${item.id === 'trading-dashboard' ? `<section class="detail-section"><p class="eyebrow">Trading-related resource</p><h2>Practice account with risk context</h2><p>This case is the only place a Deriv practice link is offered. It is not investment advice and not part of a QA service quotation. Trading involves risk and you can lose money.</p><p class="disclosure-inline">Sponsored link. NextGenWebs may earn a commission.</p><a class="button secondary" href="https://t.deriv.link?t=VQGBGPUYGJDZ" target="_blank" rel="sponsored noopener" data-track="affiliate_outbound" data-affiliate="deriv">View Deriv practice account</a></section>` : ''}
+      ${section('Business context and review objective', `<p>${escapeHtml(item.context)}</p>`, '02 · Context')}
+      ${section('Scope and limitations', `<div class="two-column"><div><h3>Included</h3>${list(item.scope)}</div><div><h3>Limitations</h3><p>${escapeHtml(item.limitations)}</p></div></div>`, '03 · Boundaries')}
       ${section('Reusable scorecard', `<p class="note"><strong>Scale:</strong> ${SCALE}. The published score reflects this limited review, not a certification.</p><div class="table-scroll"><table><thead><tr><th>Criterion</th><th>Weight</th><th>Rating</th><th>Weighted result</th></tr></thead><tbody>${scoreRows(item.scorecard)}</tbody><tfoot><tr><th>Total</th><td>100%</td><td></td><th>${item.score}%</th></tr></tfoot></table></div>`, '04 · Scoring')}
-      ${section('Test cases and results', `<div class="table-scroll"><table><thead><tr><th>ID</th><th>Check</th><th>Expected</th><th>Actual result</th><th>Status</th></tr></thead><tbody>${testRows}</tbody></table></div>`, '05 · Execution')}
-      ${section('Issue register', `<p class="note">Verified means directly observed in the retained source/run. Illustrative means a realistic scenario to test—not an observed defect.</p><div class="table-scroll"><table><thead><tr><th>ID</th><th>Evidence state</th><th>Priority</th><th>Finding/example</th><th>Recommended control</th></tr></thead><tbody>${issueRows}</tbody></table></div>`, '06 · Findings')}
-      ${section('Prioritized recommendations', list(item.recommendations, true), '07 · Improvement')}
-      ${section('Reusable SOP / process flow', `<div class="process-flow">${item.sop.map((step, index) => `<div><span>${index + 1}</span><p>${escapeHtml(step)}</p></div>`).join('')}</div>`, '08 · Operations')}
-      ${section('Evidence references', `<p class="note">Evidence is a source/version reference, not proof that Shafeeqah performed the check.</p>${list(item.evidence)}<p><strong>Review date:</strong> ${REVIEW_DATE}</p>`, '09 · Traceability')}
-      ${section('Interview walkthrough for Shafeeqah', `<p>Complete these steps personally, save redacted evidence in the private reviewer file, and then describe exactly what you did.</p>${list(item.walkthrough, true)}`, '10 · Human review')}
-      <section class="download-panel no-print"><div><p class="eyebrow">Reusable artifact</p><h2>Download the case CSV</h2><p>Includes the test cases and issue register with evidence-state labels.</p></div><a class="button primary" href="../downloads/${encodeURIComponent(item.download)}" download>Download CSV</a><button class="button secondary print-button" type="button">Print / save PDF</button></section>
+      <section class="detail-section review-log"><p class="eyebrow">05 · Review log</p><h2>Detailed checks, kept off the main story</h2><details><summary>Open the test cases and issue register</summary><p class="note">Verified means directly observed in the retained source/run. Illustrative means a realistic scenario to investigate—not an observed defect. Pending and not-run labels stay until the underlying work is done.</p><h3>Test cases</h3><div class="table-scroll"><table><thead><tr><th>ID</th><th>Check</th><th>Expected</th><th>Actual result</th><th>Status</th></tr></thead><tbody>${testRows}</tbody></table></div><h3>Issue register</h3><div class="table-scroll"><table><thead><tr><th>ID</th><th>Evidence state</th><th>Priority</th><th>Finding/example</th><th>Recommended control</th></tr></thead><tbody>${issueRows}</tbody></table></div></details></section>
+      ${section('Prioritized recommendations', list(item.recommendations, true), '06 · Improvement')}
+      ${section('Reusable SOP / process flow', `<div class="process-flow">${item.sop.map((step, index) => `<div><span>${index + 1}</span><p>${escapeHtml(step)}</p></div>`).join('')}</div>`, '07 · Operations')}
+      ${section('Evidence references', `<p class="note">Evidence is a source/version reference. It does not turn this demonstration into a paid client engagement.</p>${list(item.evidence)}<p><strong>Review date:</strong> ${REVIEW_DATE}. <strong>Retest date:</strong> ${RETEST_DATE}.</p>`, '08 · Traceability')}
+      <section class="download-panel no-print"><div><p class="eyebrow">Reusable artifact</p><h2>Download the case CSV</h2><p>Includes the test cases and issue register with evidence-state labels.</p></div><a class="button primary" href="../downloads/${encodeURIComponent(item.download)}" download data-track="case_study_download" data-case="${escapeHtml(item.id)}">Download CSV</a><button class="button secondary print-button" type="button">Print / save PDF</button></section>
     </article>`;
   document.querySelectorAll('.print-button').forEach((button) => button.addEventListener('click', () => window.print()));
+  window.SFSite?.track('case_study_view', { case_study_id: item.id });
   root.focus();
 }
 

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="t d">
+  <title id="t">Abstract practice-chart illustration</title>
+  <desc id="d">Original illustration of a simple price path. Not a product screenshot or trading result.</desc>
+  <rect width="640" height="360" rx="24" fill="#f3ece0"/>
+  <path d="M80 260 L160 210 L230 230 L310 140 L390 170 L470 90 L560 120" fill="none" stroke="#153d3a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="560" cy="120" r="10" fill="#c89b54"/>
+  <rect x="80" y="300" width="480" height="8" rx="4" fill="#d7c9b0"/>
+</svg>

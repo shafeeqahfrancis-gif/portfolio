@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="t d">
+  <title id="t">Abstract funnel stages</title>
+  <desc id="d">Original illustration of a three-stage funnel. Not a product screenshot.</desc>
+  <rect width="640" height="360" rx="24" fill="#f4efe4"/>
+  <path d="M120 70h400l-70 90H190z" fill="#2b6962"/>
+  <path d="M190 160h260l-55 80H245z" fill="#153d3a"/>
+  <rect x="270" y="250" width="100" height="48" rx="10" fill="#c89b54"/>
+</svg>

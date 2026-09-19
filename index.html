@@ -12,28 +12,18 @@
     <meta property="og:image" content="https://shafeeqahfrancis-gif.github.io/portfolio/assets/case-study-preview.svg" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>Shafeeqah Francis | Quality Assurance & Compliance Operations</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/shafeeqah-francis-portrait-100x100.jpeg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <script src="js/site-config.js"></script>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="chrome.css" />
   </head>
-  <body>
+  <body data-page="home">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Shafeeqah Francis home">
-        <span class="brand-mark">SF</span>
-        <span>Shafeeqah Francis</span>
-      </a>
-      <button class="menu-button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav id="site-nav" aria-label="Primary navigation">
-        <a href="#about">Profile</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#projects">Work Samples</a>
-        <a href="case-studies/">Case Studies</a>
-        <a href="#credentials">Credentials</a>
-        <a class="nav-cta" href="#contact">Contact</a>
-      </nav>
-    </header>
+    <div id="site-chrome-header"></div>
 
     <main id="main">
       <section class="hero" id="top">
@@ -42,9 +32,14 @@
           <h1>Making service operations <em>clearer, consistent and accountable.</em></h1>
           <p class="hero-summary">I’m Shafeeqah Francis, a structured and detail-focused operations professional with strengths in quality auditing, SOP compliance, reporting, documentation and process improvement.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#projects">View work samples</a>
+            <a class="button primary" href="enquire.html" data-track="enquiry_start">Enquire</a>
+            <a class="button secondary" href="#projects">View work samples</a>
             <a class="button secondary" href="assets/Shafeeqah-Francis-Portfolio-Summary.pdf" download>Download profile summary</a>
           </div>
+          <ul class="hero-contact">
+            <li><a href="https://www.linkedin.com/in/shafeeqa-francis-465984211/" target="_blank" rel="noopener" data-track="linkedin_click">LinkedIn</a></li>
+            <li><a href="https://wa.me/27610922970" data-track="whatsapp_click" data-wa="hero">WhatsApp +27 61 092 2970</a></li>
+          </ul>
           <ul class="role-list" aria-label="Target roles">
             <li>Quality Assurance Analyst</li>
             <li>Compliance Administrator</li>
@@ -52,7 +47,7 @@
           </ul>
         </div>
         <aside class="hero-panel reveal" aria-label="Professional focus">
-          <div class="monogram">SF</div>
+          <img class="hero-portrait" src="assets/shafeeqah-francis-portrait-100x100.jpeg" width="100" height="100" alt="Portrait of Shafeeqah Francis, quality assurance and operations professional" />
           <p class="panel-label">Professional focus</p>
           <ul>
             <li><span>01</span> Quality and audit readiness</li>
@@ -150,7 +145,7 @@
           <p>Explore structured reviews of member workflows, inventory data, enquiry handovers, digital downloads, quote rules, dashboards, lead research and signage publishing.</p>
         </div>
         <div>
-          <p class="demo-notice"><strong>Demonstration case studies:</strong> these are not client engagements. Technical checks are attributed to the reviewer who executed them, and each case includes a separate walkthrough for my own human review.</p>
+          <p class="demo-notice"><strong>Demonstration case studies:</strong> these are not client engagements. I reviewed and approved the 18 September 2026 findings, assessments and recommendations. Technical checks already executed by NextGenWebs/Codex keep that attribution. Later code fixes are implemented by NextGenWebs and are labelled with their verification status.</p>
           <a class="button primary" href="case-studies/">Browse searchable collection</a>
           <a class="button secondary" href="downloads/project-coverage-matrix.csv" download>Download coverage matrix</a>
         </div>
@@ -175,13 +170,15 @@
           <p>I’m open to opportunities in quality assurance, compliance administration, insurance operations, service operations and process improvement.</p>
         </div>
         <div class="contact-actions">
-          <a class="button primary" href="https://github.com/shafeeqahfrancis-gif" target="_blank" rel="noopener">View GitHub profile</a>
-          <p>LinkedIn and direct contact details will be added after final profile verification.</p>
+          <a class="button primary" href="enquire.html" data-track="enquiry_start">Start an enquiry</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/shafeeqa-francis-465984211/" target="_blank" rel="noopener" data-track="linkedin_click">LinkedIn</a>
+          <a class="button secondary" href="https://wa.me/27610922970" data-track="whatsapp_click">WhatsApp +27 61 092 2970</a>
+          <a class="button secondary" href="https://github.com/shafeeqahfrancis-gif" target="_blank" rel="noopener">GitHub</a>
         </div>
       </section>
     </main>
 
-    <footer><p>© <span id="year"></span> Shafeeqah Francis</p><p>Quality Assurance · Compliance · Operations</p></footer>
-    <script src="script.js"></script>
+    <div id="site-chrome-footer"></div>
+    <script src="js/site.js"></script>
   </body>
 </html>

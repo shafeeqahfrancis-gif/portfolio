@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Enquire with Shafeeqah Francis about QA and operations services or employment conversations. Scope and quotations are agreed after review." />
+    <meta name="theme-color" content="#153d3a" />
+    <title>Enquire | Shafeeqah Francis</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/shafeeqah-francis-portrait-100x100.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <script src="js/site-config.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="chrome.css" />
+  </head>
+  <body data-page="enquire">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="site-chrome-header"></div>
+    <main id="main" class="section enquire-shell">
+      <p class="eyebrow">Project or employment enquiry</p>
+      <h1>Tell me what you need reviewed, or the role you want to discuss.</h1>
+      <p class="hero-summary">This form stores a short brief so I can review it. It does not set a price, accept a job, or send a WhatsApp message. Scope, availability and any quotation are agreed after review.</p>
+
+      <ol class="step-list" aria-label="Form steps">
+        <li class="active">1. Path</li>
+        <li>2. Details</li>
+        <li>3. Contact</li>
+        <li>4. Review</li>
+      </ol>
+
+      <form id="enquiry-form" class="form-card" novalidate>
+        <section class="form-step">
+          <fieldset class="form-grid">
+            <legend>What kind of enquiry is this?</legend>
+            <div class="choice-grid">
+              <label><input type="radio" name="path" value="project" required /> <span>Project / service enquiry<br /><small>QA, SOPs, data quality, reporting, release readiness, or help defining a project.</small></span></label>
+              <label><input type="radio" name="path" value="employment" /> <span>Employment / interview enquiry<br /><small>A role, interview, or operations opportunity to discuss.</small></span></label>
+            </div>
+            <p class="field-error" data-error="path"></p>
+          </fieldset>
+        </section>
+
+        <section class="form-step" hidden>
+          <div class="form-grid">
+            <div id="project-fields">
+              <label>Service
+                <select name="service">
+                  <option value="">Choose one</option>
+                  <option value="qa-workflow">QA and workflow reviews</option>
+                  <option value="sop-docs">SOP and process documentation</option>
+                  <option value="data-quality">Data-quality / spreadsheet reviews</option>
+                  <option value="reporting">Reporting and issue tracking</option>
+                  <option value="release-readiness">Release-readiness reviews</option>
+                  <option value="define-project">Help defining a project</option>
+                </select>
+              </label>
+              <p class="field-error" data-error="service"></p>
+            </div>
+            <div id="employment-fields" hidden>
+              <label>Role or opportunity <input name="role" maxlength="120" placeholder="Quality Assurance Analyst" /></label>
+              <p class="field-error" data-error="role"></p>
+            </div>
+            <label>Short description <textarea name="description" maxlength="1500" placeholder="What needs review, or what the role involves."></textarea></label>
+            <p class="field-error" data-error="description"></p>
+            <label>Desired timing
+              <select name="timing">
+                <option value="">Choose one</option>
+                <option value="exploring">Exploring options</option>
+                <option value="one-month">Within one month</option>
+                <option value="this-month">This month</option>
+                <option value="flexible">Flexible / not sure</option>
+              </select>
+            </label>
+            <p class="field-error" data-error="timing"></p>
+            <label>Optional budget note <input name="budget" maxlength="80" placeholder="Leave blank if you do not want to share this" /></label>
+            <label>Optional public project link <input name="project_url" type="url" maxlength="500" placeholder="https://" /></label>
+            <p class="field-error" data-error="project_url"></p>
+          </div>
+        </section>
+
+        <section class="form-step" hidden>
+          <div class="form-grid">
+            <label>Your name <input name="contact_name" maxlength="120" autocomplete="name" /></label>
+            <p class="field-error" data-error="contact_name"></p>
+            <label>Email <input name="email" type="email" maxlength="254" autocomplete="email" /></label>
+            <p class="field-error" data-error="email"></p>
+            <label>Phone or WhatsApp (optional) <input name="phone" maxlength="40" autocomplete="tel" placeholder="+27 …" /></label>
+            <p class="field-error" data-error="phone"></p>
+            <label>Preferred contact
+              <select name="preferred_contact">
+                <option value="email">Email</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="either">Either</option>
+              </select>
+            </label>
+            <p class="field-error" data-error="preferred_contact"></p>
+            <label class="honeypot" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off" /></label>
+            <p>Contact details are used only to respond to this enquiry. See the <a href="privacy.html">privacy note</a>.</p>
+          </div>
+        </section>
+
+        <section class="form-step" hidden>
+          <h2>Review before saving</h2>
+          <p>You can edit anything before it is stored.</p>
+          <ul class="review-list" id="review-list"></ul>
+          <p class="notice">Saving creates an enquiry record. Opening WhatsApp afterwards only prepares a message; it does not send it and does not replace a saved record.</p>
+          <button class="button secondary" id="edit-review" type="button">Edit answers</button>
+        </section>
+
+        <div class="form-actions">
+          <button class="button secondary" id="previous-step" type="button" hidden>Back</button>
+          <button class="button primary" id="next-step" type="button">Continue</button>
+          <button class="button primary" id="submit-enquiry" type="submit" hidden>Save enquiry</button>
+        </div>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+
+      <section id="success-panel" class="success-panel" hidden>
+        <h2>Enquiry received</h2>
+        <p>The brief was stored. Reference: <strong id="saved-reference"></strong></p>
+        <p id="whatsapp-send-note"></p>
+        <div class="form-actions">
+          <a class="button primary" data-open-whatsapp target="_blank" rel="noopener">Open WhatsApp with this brief</a>
+          <button class="button secondary" type="button" data-copy-brief>Copy brief</button>
+          <button class="button secondary" type="button" data-download-brief>Download brief</button>
+        </div>
+      </section>
+
+      <section id="fail-panel" class="notice" hidden>
+        <h2>The enquiry was not saved</h2>
+        <p>Your answers are still in the form. You can retry, or open WhatsApp with the same brief as a fallback. A WhatsApp click is not a successful submission.</p>
+        <div class="form-actions">
+          <a class="button primary" data-open-whatsapp target="_blank" rel="noopener">Open WhatsApp fallback</a>
+          <button class="button secondary" type="button" data-copy-brief>Copy brief</button>
+          <button class="button secondary" type="button" data-download-brief>Download brief</button>
+        </div>
+      </section>
+    </main>
+    <div id="site-chrome-footer"></div>
+    <script src="js/enquiry.js"></script>
+    <script src="js/site.js"></script>
+    <script src="js/enquire-page.js"></script>
+  </body>
+</html>
