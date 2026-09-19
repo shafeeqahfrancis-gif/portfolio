@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","TD-01","Executed","Pass","Run unit tests","All tests pass","39 tests across 6 files passed"
+"Test","TD-02","Executed","Pass","Production build","Build completes","Build passed"
+"Test","TD-03","Executed","Pass","Internal route manifest","Expected routes in sitemap","12 routes confirmed"
+"Test","TD-04","Executed","Warning","Review bundle size","Optimization risks reported","720.45 kB JS chunk warning"
+"Issue","TD-I01","Verified","Medium","Main JS exceeds warning threshold","Measure and consider route splitting","Build at commit e2f7e46"
+"Issue","TD-I02","Illustrative","High","Delayed feed may appear current","Show stale/disconnected state","Scenario only"
+"Issue","TD-I03","Illustrative","High","Demo value shared without context","Attach demo wording to exports","Scenario only"

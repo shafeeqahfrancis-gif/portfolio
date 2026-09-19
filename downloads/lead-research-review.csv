@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","LR-01","Verified","Observed","Review required tracker fields","Criteria, source and decision fields defined","Methodology defines evidence and notes"
+"Test","LR-02","Illustrative","Designed","Apply normalized duplicate key","Duplicate organizations merged or linked","Synthetic procedure prepared"
+"Test","LR-03","Illustrative","Designed","Score-to-evidence consistency","No score without evidence","Reviewer check designed"
+"Test","LR-04","Verified","Observed","Check outcome language","No response/revenue guarantee","Public project disclaims prediction"
+"Issue","LR-I01","Illustrative","High","Duplicate names/domains","Normalize and retain merge decision","Scenario only"
+"Issue","LR-I02","Illustrative","Medium","Evidence may become stale","Store accessed date and refresh rule","Scenario only"
+"Issue","LR-I03","Illustrative","Medium","Researcher guesses missing facts","Use unknown and confidence","Scenario only"

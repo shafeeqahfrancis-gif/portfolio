@@ -6,7 +6,9 @@ A responsive GitHub Pages portfolio positioning Shafeeqah Francis for quality as
 
 - Professional profile and target roles
 - Quality, compliance and operations capability overview
-- Four clearly labelled portfolio demonstration projects
+- Four foundational portfolio demonstrations
+- Eight searchable, filterable industry case studies with evidence boundaries
+- Downloadable test/issue registers and a project-coverage matrix
 - Verified credentials
 - Downloadable profile summary
 
@@ -23,6 +25,10 @@ Then visit `http://localhost:8000`.
 ## Publish with GitHub Pages
 
 In the repository settings, open **Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
+
+## Attribution and private review
+
+Technical checks in the case-study collection identify their actual executor. They are not attributed to Shafeeqah. A gitignored private-review folder can be used locally for her notes and screenshots; it must not be added to the public repository or Pages artifact.
 
 ## Next profile update
 

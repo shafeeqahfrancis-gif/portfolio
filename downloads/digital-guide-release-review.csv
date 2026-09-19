@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","DG-01","Verified","Observed","Inspect configuration separation","Editable content centralized","site-config.js centralizes content"
+"Test","DG-02","Verified","Observed","Search fictional access/contact values","All replaced before release","Example address, code, Wi-Fi and phone values present by design"
+"Test","DG-03","Verified","Observed","Inspect indexing default","Sample not indexed as real property","noindex present"
+"Test","DG-04","Not run","Not run","Fresh-extraction device pass","All packaged files work","No final buyer ZIP in scope"
+"Issue","DG-I01","Verified","High","Fictional access/contact values require replacement","Blocking placeholder check","Source review at commit b3868a8"
+"Issue","DG-I02","Verified","Medium","No release manifest","Add versioned inventory","Source review at commit b3868a8"
+"Issue","DG-I03","Illustrative","Medium","Buyer may retain noindex unintentionally","Document indexing choice","Scenario only"

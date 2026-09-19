@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","EH-01","Verified","Observed","Inspect required qualification fields","Contact, company, need and preference captured","Required fields and review step present"
+"Test","EH-02","Verified","Observed","Inspect pricing language","No guessed configuration or price","Formal quote follows requirement confirmation"
+"Test","EH-03","Verified","Observed","Inspect consent treatment","Inbound request separate from marketing","Separation stated in copy and operations docs"
+"Test","EH-04","Not run","Not run","Submit and verify downstream records","Controlled test creates expected records","Live submission prohibited in this review"
+"Issue","EH-I01","Verified","Low","Outcome checkboxes allow empty selection","Require selection or Not sure","Source review at commit fa23415"
+"Issue","EH-I02","Illustrative","High","Notification failure may hide enquiry","Dashboard queue remains source of truth","Scenario only"
+"Issue","EH-I03","Illustrative","Medium","Unowned handoff may stall","Require owner and follow-up","Scenario only"

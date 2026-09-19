@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","SG-01","Executed","Pass","Build public prototype","Production build compiles","Vite build passed"
+"Test","SG-02","Executed","Blocked","Run lint","Repo-owned configuration runs","No ESLint dependency/config available"
+"Test","SG-03","Verified","Observed","Inspect imagery and alt text","Useful alt text and demo identification","Alt text present; stock/demo URLs used"
+"Test","SG-04","Not run","Not run","Final-size/QR validation","Matches approved specification","No production asset in scope"
+"Issue","SG-I01","Verified","Medium","Lint is not reproducible","Pin ESLint and configuration","Source/build at commit 823e5a9"
+"Issue","SG-I02","Verified","Medium","Prototype includes sample records/assets","Block release until replaced","Source review"
+"Issue","SG-I03","Illustrative","High","Proof fails at final size/distance","Production-size and QR test","Scenario only"

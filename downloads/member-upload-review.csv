@@ -1,0 +1,8 @@
+"Record type","ID","Evidence state","Priority/status","Check or finding","Expected/control","Actual/evidence"
+"Test","MU-01","Verified","Observed","Compare formats named in intro, drop-zone and picker","One consistent format list","Intro names DICOM; picker names PDF/JPG/PNG/ZIP"
+"Test","MU-02","Verified","Observed","Trace visible step numbering","Sequential current and next steps","Step 3 success copy points to Step 5"
+"Test","MU-03","Verified","Observed","Check pre-upload limits","Size limit visible before selection","No size guidance found on reviewed CBCT page"
+"Test","MU-04","Not run","Not run","Attempt rejected upload safely","Actionable recovery guidance","No account or live upload used"
+"Issue","MU-I01","Verified","High","Accepted-format copy is inconsistent","Align copy and approved rules","Source review at commit 5ada047"
+"Issue","MU-I02","Verified","Medium","Visible workflow skips a step number","Confirm and update roadmap labels","Source review at commit 5ada047"
+"Issue","MU-I03","Illustrative","Medium","Rejected upload may lack a clear support route","Validate on a safe test account","Scenario only"
