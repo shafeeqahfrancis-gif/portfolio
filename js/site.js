@@ -100,6 +100,10 @@
               <button type="button" data-theme-option="dark">Dark</button>
               <button type="button" data-theme-option="system">System</button>
             </div>
+            <div class="header-share">
+              <button type="button" aria-expanded="false" aria-controls="header-share-panel">Share</button>
+              <div class="share-panel" id="header-share-panel" hidden></div>
+            </div>
             <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
           </div>
           <nav id="site-nav" aria-label="Primary navigation">
@@ -121,7 +125,8 @@
             <a href="${url('resources.html')}">Resources</a>
             <a href="https://wa.me/${SITE.whatsappE164}" data-track="whatsapp_click" data-wa="footer">WhatsApp ${SITE.whatsappDisplay}</a>
           </nav>
-        </footer>`;
+        </footer>
+        <div class="page-share no-print" id="page-share"></div>`;
     }
     document.querySelectorAll('[data-year]').forEach((node) => { node.textContent = String(new Date().getFullYear()); });
     setTheme(localStorage.getItem(SITE.themeStorageKey) || 'system');
@@ -146,6 +151,42 @@
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
       if ((localStorage.getItem(SITE.themeStorageKey) || 'system') === 'system') setTheme('system');
     });
+    const shareToggle = document.querySelector('.header-share > button');
+    const sharePanel = document.querySelector('#header-share-panel');
+    shareToggle?.addEventListener('click', () => {
+      const open = sharePanel.hidden;
+      sharePanel.hidden = !open;
+      shareToggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (event) => {
+      if (!sharePanel || sharePanel.hidden) return;
+      if (event.target.closest('.header-share')) return;
+      sharePanel.hidden = true;
+      shareToggle?.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && sharePanel && !sharePanel.hidden) {
+        sharePanel.hidden = true;
+        shareToggle?.setAttribute('aria-expanded', 'false');
+        shareToggle?.focus();
+      }
+    });
+  }
+
+  function currentShare() {
+    const title = document.title;
+    const description = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+    const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+    const pageUrl = canonical || location.href.split('#')[0];
+    return { title, summary: description, url: pageUrl };
+  }
+
+  function renderShare() {
+    if (!window.SFShare) return;
+    const payload = currentShare();
+    window.SFShare.mount(document.getElementById('header-share-panel'), { ...payload, compact: true });
+    window.SFShare.mount(document.getElementById('page-share'), payload);
+    window.SFShare.mount(document.getElementById('home-share'), payload);
   }
 
   function renderWhatsApp() {
@@ -202,11 +243,12 @@
 
   renderChrome();
   bindChrome();
+  renderShare();
   renderWhatsApp();
   renderConsent();
   bindTracking();
   if (localStorage.getItem(SITE.consentStorageKey) === 'granted') track('page_view');
   else if (!localStorage.getItem(SITE.consentStorageKey) && !document.querySelector('.consent-banner')) track('page_view');
 
-  window.SFSite = { url, track, waMessage, isSynthetic, pageContext, setTheme };
+  window.SFSite = { url, track, waMessage, isSynthetic, pageContext, setTheme, renderShare, currentShare };
 })();
