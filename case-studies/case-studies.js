@@ -338,7 +338,21 @@ function renderCollection() {
   function update() {
     const query = search.value.trim().toLowerCase();
     const filtered = cases.filter((item) => (industry === 'All' || item.industry === industry) && (skill === 'All' || item.skills.includes(skill)) && (!query || `${item.title} ${item.summary} ${item.industry} ${item.skills.join(' ')}`.toLowerCase().includes(query)));
-    grid.innerHTML = filtered.map((item) => `<article class="case-card"><div class="case-meta"><span>${item.number}</span><span>${escapeHtml(item.industry)}</span></div><p class="demo-label">Demonstration case study</p><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.summary)}</p><p><span class="status-chip ${STATUS_CLASS[item.publicStatus] || ''}">${escapeHtml(item.publicStatus)}</span></p><div class="tag-list">${item.skills.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="case-card-footer"><span>Scope score <strong>${item.score}%</strong></span><a href="case-study.html?id=${encodeURIComponent(item.id)}" data-track="case_study_view" data-case="${escapeHtml(item.id)}">Open case study →</a></div></article>`).join('');
+    grid.innerHTML = filtered.map((item) => `<article class="case-card"><div class="case-meta"><span>${item.number}</span><span>${escapeHtml(item.industry)}</span></div><p class="demo-label">Demonstration case study</p><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.summary)}</p><p><span class="status-chip ${STATUS_CLASS[item.publicStatus] || ''}">${escapeHtml(item.publicStatus)}</span></p><div class="tag-list">${item.skills.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="case-card-footer"><span>Scope score <strong>${item.score}%</strong></span><a href="${escapeHtml(item.id)}.html" data-track="case_study_view" data-case="${escapeHtml(item.id)}">Open case study →</a><button type="button" class="share-btn" data-share-case="${escapeHtml(item.id)}">Share</button></div></article>`).join('');
+    grid.querySelectorAll('[data-share-case]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const item = cases.find((entry) => entry.id === button.dataset.shareCase);
+        if (!item || !window.SFShare) return;
+        const urls = window.SFShare.links(`${item.id}.html`, item.title, item.summary);
+        try {
+          await navigator.clipboard.writeText(urls.post);
+          button.textContent = 'Copied post';
+        } catch (error) {
+          window.open(urls.linkedin, '_blank', 'noopener');
+        }
+        window.SFSite?.track('share_click', { case_study_id: item.id, affiliate: 'copy_post' });
+      });
+    });
     document.querySelector('#result-count').textContent = `${filtered.length} of ${cases.length} case studies shown`;
     document.querySelector('#empty-state').hidden = filtered.length !== 0;
   }
@@ -352,13 +366,28 @@ function renderCollection() {
 function list(items, ordered = false) { const tag = ordered ? 'ol' : 'ul'; return `<${tag}>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</${tag}>`; }
 function section(title, content, eyebrow = '') { return `<section class="detail-section">${eyebrow ? `<p class="eyebrow">${escapeHtml(eyebrow)}</p>` : ''}<h2>${escapeHtml(title)}</h2>${content}</section>`; }
 
+function caseIdFromLocation() {
+  const queryId = new URLSearchParams(location.search).get('id');
+  if (queryId) return queryId;
+  const file = location.pathname.split('/').pop().replace(/\.html$/, '');
+  if (file && file !== 'case-study' && file !== 'index') return file;
+  return null;
+}
+
 function renderDetail() {
   const root = document.querySelector('#main.case-detail'); if (!root) return;
-  const id = new URLSearchParams(location.search).get('id');
+  const id = caseIdFromLocation();
   const item = cases.find((entry) => entry.id === id);
   if (!item) { root.innerHTML = `<section class="detail-hero"><p class="eyebrow">Case study not found</p><h1>Choose a case study from the collection.</h1><a class="button primary" href="index.html">View collection</a></section>`; return; }
-  document.title = `${item.title} | Shafeeqah Francis`;
-  document.querySelector('meta[name="description"]').setAttribute('content', item.summary);
+  const pageUrl = (window.SFShare && window.SFShare.canonicalUrl(`case-studies/${item.id}.html`)) || `${location.origin}${location.pathname}`;
+  const imageUrl = (window.SFShare && window.SFShare.canonicalUrl(`assets/og/${item.id}.png`)) || '';
+  window.SFShare?.applyPageMeta({
+    title: `${item.title} | Shafeeqah Francis`,
+    description: item.summary,
+    url: pageUrl,
+    image: imageUrl,
+    imageAlt: `${item.title} — demonstration case study by Shafeeqah Francis`,
+  });
   const issueRows = item.issues.map((row) => `<tr>${row.map((cell, index) => `<td${index === 1 ? `><span class="status ${cell.toLowerCase()}">${escapeHtml(cell)}</span>` : `>${escapeHtml(cell)}`}</td>`).join('')}</tr>`).join('');
   const testRows = item.tests.map((row) => `<tr>${row.map((cell, index) => `<td${index === 4 ? `><span class="status ${cell.toLowerCase().replace(' ','-')}">${escapeHtml(cell)}</span>` : `>${escapeHtml(cell)}`}</td>`).join('')}</tr>`).join('');
   const story = item.story || {};
@@ -374,7 +403,7 @@ function renderDetail() {
     </ol>`;
   root.innerHTML = `
     <article>
-      <header class="detail-hero"><p class="demo-label">Demonstration case study · not a client engagement</p><p class="eyebrow">${escapeHtml(item.industry)} · ${escapeHtml(item.skills.join(' · '))}</p><h1>${escapeHtml(item.title)}</h1><p class="hero-summary">${escapeHtml(item.summary)}</p><div class="detail-facts"><div><span>Review date</span><strong>${REVIEW_DATE}</strong></div><div><span>Source retest</span><strong>${RETEST_DATE}</strong></div><div><span>Public status</span><strong>${escapeHtml(item.publicStatus)}</strong></div></div><div class="disclosure"><strong>Attribution:</strong> Shafeeqah reviewed and approved the 18 September 2026 findings, assessments and recommendations. Technical checks already executed by NextGenWebs/Codex keep that attribution. Later code changes name NextGenWebs as implementer and are not assumed covered by the earlier approval.</div></header>
+      <header class="detail-hero"><p class="demo-label">Demonstration case study · not a client engagement</p><p class="eyebrow">${escapeHtml(item.industry)} · ${escapeHtml(item.skills.join(' · '))}</p><h1>${escapeHtml(item.title)}</h1><p class="hero-summary">${escapeHtml(item.summary)}</p><div id="case-share"></div><div class="detail-facts"><div><span>Review date</span><strong>${REVIEW_DATE}</strong></div><div><span>Source retest</span><strong>${RETEST_DATE}</strong></div><div><span>Public status</span><strong>${escapeHtml(item.publicStatus)}</strong></div></div><div class="disclosure"><strong>Attribution:</strong> Shafeeqah reviewed and approved the 18 September 2026 findings, assessments and recommendations. Technical checks already executed by NextGenWebs/Codex keep that attribution. Later code changes name NextGenWebs as implementer and are not assumed covered by the earlier approval.</div></header>
       ${section('What happened', narrative, '01 · Story')}
       ${item.id === 'trading-dashboard' ? `<section class="detail-section"><p class="eyebrow">Trading-related resource</p><h2>Practice account with risk context</h2><p>This case is the only place a Deriv practice link is offered. It is not investment advice and not part of a QA service quotation. Trading involves risk and you can lose money.</p><p class="disclosure-inline">Sponsored link. NextGenWebs may earn a commission.</p><a class="button secondary" href="https://t.deriv.link?t=VQGBGPUYGJDZ" target="_blank" rel="sponsored noopener" data-track="affiliate_outbound" data-affiliate="deriv">View Deriv practice account</a></section>` : ''}
       ${section('Business context and review objective', `<p>${escapeHtml(item.context)}</p>`, '02 · Context')}
@@ -387,6 +416,8 @@ function renderDetail() {
       <section class="download-panel no-print"><div><p class="eyebrow">Reusable artifact</p><h2>Download the case CSV</h2><p>Includes the test cases and issue register with evidence-state labels.</p></div><a class="button primary" href="../downloads/${encodeURIComponent(item.download)}" download data-track="case_study_download" data-case="${escapeHtml(item.id)}">Download CSV</a><button class="button secondary print-button" type="button">Print / save PDF</button></section>
     </article>`;
   document.querySelectorAll('.print-button').forEach((button) => button.addEventListener('click', () => window.print()));
+  window.SFShare?.mount(document.getElementById('case-share'), { url: pageUrl, title: item.title, summary: item.summary });
+  window.SFSite?.renderShare();
   window.SFSite?.track('case_study_view', { case_study_id: item.id });
   root.focus();
 }
